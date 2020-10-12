@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "nest-rest-template",
+  "name": "covrest",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",

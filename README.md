@@ -1,5 +1,7 @@
-# nest-rest-template
-Jump-start your Nest.js REST app with this opinionated template
+# COVREST
+
+**COVREST** is a COVID REST API providing statistics for Bulgaria.
+Built for Grafana.
 
 ## Installation
 
