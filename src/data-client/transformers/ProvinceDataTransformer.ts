@@ -1,6 +1,8 @@
 import { Province } from "./Province"
 import * as _ from "lodash"
+import { Injectable } from "@nestjs/common"
 
+@Injectable()
 export class ProvinceDataTransformer {
     transform(csv: string[][]): ProvinceDataPoint[] {
         const indexes: { provinceKey: string, type: "ALL" | "ACT" }[] = []
@@ -29,7 +31,7 @@ export class ProvinceDataTransformer {
             for (let j = 1; j < csv[i].length; j++) {
                 const provinceKey = indexes[j].provinceKey
                 const typeKey = { "ALL": "total", "ACT": "active" }[indexes[j].type]
-                _.set(point, `${provinceKey}.${typeKey}`, csv[i][j])
+                _.set(point, `${provinceKey}.${typeKey}`, Number(csv[i][j]))
             }
 
             result.push(point)

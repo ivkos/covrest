@@ -1,5 +1,7 @@
 import axios from "axios"
+import { Injectable } from "@nestjs/common"
 
+@Injectable()
 export class GovDataClient {
     static readonly BASE_URL = "https://data.egov.bg"
 
