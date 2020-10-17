@@ -1,21 +1,14 @@
 steps:
-# https://cloud.google.com/cloud-build/docs/kaniko-cache#kaniko-build
-- name: 'gcr.io/kaniko-project/executor:latest'
+- name: 'gcr.io/cloud-builders/gcloud-slim'
   args:
-  - '--build-arg=VERSION_BUILD=${SHORT_SHA}'
-  - '--destination=eu.gcr.io/${PROJECT_ID}/${_NAME}:latest'
-  - '--destination=eu.gcr.io/${PROJECT_ID}/${_NAME}:${COMMIT_SHA}'
-  - '--cache=true'
-  - '--cache-ttl=744h'
-
-# Deploy container image to Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'run'
-  - 'deploy'
-  - '${_NAME}'
-  - '--image=eu.gcr.io/${PROJECT_ID}/${_NAME}:${COMMIT_SHA}'
-  - '--platform=managed'
-  - '--port=8080'
-  - '--region=${_REGION}'
-  - '--allow-unauthenticated'
+  - functions
+  - deploy
+  - ${_NAME}
+  - --region=${_REGION}
+  - --trigger-http
+  - --allow-unauthenticated
+  - --source=.
+  - --entry-point=main
+  - --runtime=nodejs12
+  - --memory=128MB
+  - --update-env-vars=APP_ENV=serverless,VERSION_BUILD=${SHORT_SHA}
