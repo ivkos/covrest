@@ -4,9 +4,10 @@ import { ConfigurationModule } from "../ConfigurationModule"
 import { GovDataModule } from "../data-client/GovDataModule"
 import { ProvincesController } from "./ProvincesController"
 import { CasesController } from "./CasesController"
+import { ProvinceModule } from "../db/entities/province/ProvinceModule"
 
 @Module({
-    imports: [ConfigurationModule, GovDataModule],
+    imports: [ConfigurationModule, GovDataModule, ProvinceModule],
     providers: [],
     controllers: [
         HealthController,

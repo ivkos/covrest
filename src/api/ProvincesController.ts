@@ -1,10 +1,12 @@
 import { Controller, Get } from "@nestjs/common"
-import { Province } from "../data-client/transformers/Province"
+import { ProvinceService } from "../db/entities/province/ProvinceService"
 
 @Controller()
 export class ProvincesController {
+    constructor(private readonly provinceService: ProvinceService) {}
+
     @Get("/v1/provinces")
-    async getProvinces(): Promise<typeof Province> {
-        return Province
+    async getProvinces() {
+        return this.provinceService.findAll()
     }
 }
