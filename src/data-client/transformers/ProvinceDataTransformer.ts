@@ -1,4 +1,3 @@
-import { Province } from "./Province"
 import * as _ from "lodash"
 import { Injectable } from "@nestjs/common"
 
@@ -44,4 +43,4 @@ export class ProvinceDataTransformer {
 export type ProvinceDataPointCases = { total: number, active: number }
 export type ProvinceDataPoint =
     { date: string } &
-    { [provinceKey in keyof typeof Province]?: ProvinceDataPointCases }
+    Partial<{ [provinceKey: string]: ProvinceDataPointCases }>
