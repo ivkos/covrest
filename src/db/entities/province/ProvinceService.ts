@@ -10,4 +10,9 @@ export class ProvinceService {
     async findAll(): Promise<Province[]> {
         return this.provinceRepository.find()
     }
+
+    async getProvinceCodes(): Promise<string[]> {
+        const availableProvinces = await this.provinceRepository.find()
+        return availableProvinces.map(p => p.ekatteCode)
+    }
 }
